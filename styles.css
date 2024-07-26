@@ -51,10 +51,17 @@ header .search-bar input {
 }
 
 header .search-bar button {
-    background: none;
+    background-color: #1f80e0;
     border: none;
     color: white;
     cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header .search-bar button:hover {
+    background-color: #147bd1;
 }
 
 header .user-profile img {
@@ -128,6 +135,7 @@ header .user-profile img {
     text-align: center;
     padding: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
 .movie-grid .movie-item img {
@@ -144,6 +152,20 @@ header .user-profile img {
 .movie-grid .movie-item:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-grid .progress-bar {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 90%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.movie-grid .progress-bar .progress {
+    height: 100%;
+    background-color: #1f80e0;
 }
 
 footer {

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const popularMoviesGrid = document.querySelector('.movie-grid.popular-movies');
     const continueWatchingGrid = document.querySelector('.movie-grid.continue-watching');
     const tvShowsGrid = document.querySelector('.movie-grid.tv-shows');
+    
 
     const popularMovies = [
         { title: "Yeh Jawaani Hai Deewani", image: "images/movie1.jpg" },
@@ -13,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const continueWatchingMovies = [
-        { title: "Avengers: Endgame", image: "images/continue1.jpg" },
-        { title: "The Mandalorian", image: "images/continue2.jpg" },
-        { title: "WandaVision", image: "images/continue3.jpg" },
-        { title: "Loki", image: "images/continue4.jpg" },
-        { title: "Black Widow", image: "images/continue5.jpg" }
+        { title: "Avengers: Endgame", image: "images/continue1.jpg", progress: 70 },
+        { title: "The Mandalorian", image: "images/continue2.jpg", progress: 50 },
+        { title: "WandaVision", image: "images/continue3.jpg", progress: 30 },
+        { title: "Loki", image: "images/continue4.jpg", progress: 90 },
+        { title: "Black Widow", image: "images/continue5.jpg", progress: 20 }
     ];
 
     const tvShows = [
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
 
-    function loadMovies(movieArray, container) {
+    function loadMovies(movieArray, container, isContinueWatching = false) {
         movieArray.forEach(movie => {
             const movieItem = document.createElement('div');
             movieItem.classList.add('movie-item');
@@ -37,12 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${movie.image}" alt="${movie.title}">
                 <h3>${movie.title}</h3>
             `;
+            if (isContinueWatching) {
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('progress-bar');
+                const progress = document.createElement('div');
+                progress.classList.add('progress');
+                progress.style.width = `${movie.progress}%`;
+                progressBar.appendChild(progress);
+                movieItem.appendChild(progressBar);
+            }
             container.appendChild(movieItem);
         });
     }
 
     loadMovies(popularMovies, popularMoviesGrid);
-    loadMovies(continueWatchingMovies, continueWatchingGrid);
+    loadMovies(continueWatchingMovies, continueWatchingGrid, true);
     loadMovies(tvShows, tvShowsGrid);
 
     // Search functionality
